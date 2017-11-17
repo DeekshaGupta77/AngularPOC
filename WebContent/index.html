@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Filter With Angular Js</title>
+<script type="text/javascript" src="js/angular.min.js"></script>
+<script type="text/javascript">
+	var myapp = angular.module('myapp',[]);
+	myapp.controller('productController',function($scope){
+		$scope.listProducts = [
+			{id:'p01', name:'Nokia', price:'1000', photo:'1.jpg'},
+			{id:'p02', name:'Samsung', price:'2000', photo:'2.jpg'},
+			{id:'p03', name:'Moto', price:'3000', photo:'3.jpg'},
+			{id:'p04', name:'Apple', price:'4000', photo:'4.jpg'},
+			{id:'p05', name:'One+', price:'1000', photo:'5.jpg'}
+		]
+	});
+</script>
+</head>
+<body ng-controller= "productController">
+
+
+
+<input type="text" ng-model="search.$" placeholder="Search by all fields">
+<br><br>
+
+<table cellpadding="2" cellspacing="2" border="1">
+<tr>
+	<th>Id</th>
+	<th>Name</th>
+	<th>Price</th>
+	<th>Image</th>
+</tr>
+
+<tr ng-repeat="product in listProducts | filter:search" >
+	<td>{{product.id}}</td>
+	<td>{{product.name}}</td>
+	<td>{{product.price | currency}}</td>
+	<td>
+		<img src="images/{{product.photo}}" width="120" height="100">
+	</td>
+</tr>
+
+</table>
+
+</body>
+</html>
